@@ -42,6 +42,9 @@ def sum_ones(part, prod):
     return partList, prodList
 
 def add_number(partitions, number):
+    """
+    Adds to the partition provided `number` in all its combinations
+    """
     # Add to each list in partitions add 1
     prods = partitions.values()
     nKeys = [(1,) + x for x in partitions.keys()]
@@ -61,6 +64,9 @@ def add_number(partitions, number):
     return dict(zip(newParts, newProds))
 
 def partitions(value, show_progress=False):
+    """
+    Generate all partitions for partitions number `value`
+    """
     p = {(1,): 1}
     for num in range(2, value+1):
         p = add_number(p, num)
@@ -69,6 +75,9 @@ def partitions(value, show_progress=False):
     return p
 
 def part(n, show_progress=False):
+    """
+    Generate all partitions for the number `n` and summarize them
+    """
     # Get partitions as list of tuples
     parts = partitions(n, show_progress=show_progress)
 
@@ -80,7 +89,6 @@ def part(n, show_progress=False):
     return format('Range: %d Average: %.2f Median: %.2f' % 
         (filtered_products[-1]-filtered_products[0], np.mean(filtered_products), np.median(filtered_products)))
 
-
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print('Please specify the integer partition number!')
@@ -88,7 +96,7 @@ if __name__ == "__main__":
         try:
             n = [int(x) for x in sys.argv[1:]]
             for num in n:
-                print(part(num, show_progress=False))
-                #print(part(num, show_progress=True))
+                #print(part(num, show_progress=False))
+                print(part(num, show_progress=True))
         except Exception:
             pass

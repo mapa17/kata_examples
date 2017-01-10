@@ -82,11 +82,13 @@ def part(n, show_progress=False):
 
 
 if __name__ == "__main__":
-    try:
-        n = [int(x) for x in sys.argv[1:]]
-    except Exception:
-        n = 10
-
-    for num in n:
-        print(part(num, show_progress=False))
-        #print(part(num, show_progress=True))
+    if len(sys.argv) < 2:
+        print('Please specify the integer partition number!')
+    else:
+        try:
+            n = [int(x) for x in sys.argv[1:]]
+            for num in n:
+                print(part(num, show_progress=False))
+                #print(part(num, show_progress=True))
+        except Exception:
+            pass

@@ -5,12 +5,7 @@ def tail_swap(strings):
     >>> tail_swap(['a:12345', '777:xyz'])
     ['a:xyz', '777:12345']
     """
-    a, b = strings
+    h1, t1 = strings[0].split(':')
+    h2, t2 = strings[1].split(':')
 
-    ai = a.index(':')
-    bi = b.index(':')
-
-    A = a[:ai] + ':' + b[bi+1:]
-    B = b[:bi] + ':' + a[ai+1:]
-
-    return [A, B]
+    return [h1 + ':' + t2, h2 + ':' + t1]
